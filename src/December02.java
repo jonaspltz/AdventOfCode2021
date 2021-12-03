@@ -6,8 +6,8 @@ public class December02 {
     private int horizontal;
     private int depth;
     private int aim;
-    private List<String> action = new ArrayList<>();
-    private List<Integer> value = new ArrayList<>();
+    private final List<String> action = new ArrayList<>();
+    private final List<Integer> value = new ArrayList<>();
 
 
     public December02() {
@@ -16,10 +16,10 @@ public class December02 {
         this.aim = 0;
     }
 
-    public void executeCommands(){
-        for(int i = 0; i<this.action.size(); i++){
+    public void executeCommands() {
+        for (int i = 0; i < this.action.size(); i++) {
             String action = this.action.get(i);
-            switch(action){
+            switch (action) {
                 case "forward":
                     this.forward(this.value.get(i));
                     break;
@@ -34,10 +34,10 @@ public class December02 {
     }
 
     public void splitList(List<String> data) {
-        for (int i = 0; i < data.size(); i++) {
-            String command = data.get(i).replaceAll(" ", "");
+        for (String value : data) {
+            String command = value.replaceAll(" ", "");
             this.action.add(command.substring(0, command.length() - 1));
-            this.value.add(Integer.valueOf(command.substring(command.length()-1)));
+            this.value.add(Integer.valueOf(command.substring(command.length() - 1)));
         }
     }
 
