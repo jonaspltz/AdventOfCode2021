@@ -54,6 +54,4 @@ public class December03 {
         }
         return new String[]{gammaValue.toString(), epsilonValue.toString()};
     }
-
-
 }

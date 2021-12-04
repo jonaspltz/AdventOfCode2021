@@ -5,7 +5,16 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        runDecember03();
+        runDecember04();
+    }
+
+    public static void runDecember04() throws IOException {
+        LoadList loadList = new LoadList();
+        List<Integer> numbers = loadList.rowToList04("December04.txt");
+        List<int[][]> boards = loadList.loadBingoBoards("December04.txt");
+        December04 december04 = new December04();
+        december04.winningBoard(numbers, boards);
+        december04.winningBoardLast(numbers, boards);
     }
 
     public static void runDecember03() throws IOException {
