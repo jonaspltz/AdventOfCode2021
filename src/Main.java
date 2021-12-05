@@ -5,7 +5,17 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        runDecember04();
+        runDecember05();
+    }
+
+    public static void runDecember05() throws IOException {
+        LoadList loadList = new LoadList();
+        List<String> rows = loadList.loadList("December05.txt");
+        December05 december05 = new December05();
+        List<int[]> coordinates = december05.convertRowsToCoordinates(rows);
+        int[][] field = december05.drawLines(coordinates);
+        System.out.println(december05.countOverlappingPoints(field));
+
     }
 
     public static void runDecember04() throws IOException {
