@@ -6,6 +6,16 @@ import java.util.Scanner;
 
 public class LoadList {
 
+    public List<Integer> loadLanternFish(String file) throws IOException {
+        List<Integer> list = new ArrayList<>();
+        Scanner sc = new Scanner(new File(file));
+        sc.useDelimiter(",");
+        while (sc.hasNext()) {
+            list.add(Integer.parseInt(sc.next()));
+        }
+        return list;
+    }
+
     public List<int[][]> loadBingoBoards(String file) throws IOException {
         int numberOfBoards = this.countBoards(file);
         List<int[][]> list = new ArrayList<>();

@@ -5,7 +5,15 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        runDecember05();
+        runDecember06();
+    }
+
+    public static void runDecember06() throws IOException {
+        LoadList loadList = new LoadList();
+        List<Integer> list = loadList.loadLanternFish("December06.txt");
+        December06 december06 = new December06();
+        System.out.println(december06.simulateGrowth(list, 80));
+        System.out.println(december06.simulateGrowth(list, 256));
     }
 
     public static void runDecember05() throws IOException {
