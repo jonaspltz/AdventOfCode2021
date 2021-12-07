@@ -5,7 +5,14 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        runDecember06();
+        runDecember07();
+    }
+
+    public static void runDecember07() throws IOException {
+        LoadList loadList = new LoadList();
+        List<Integer> list = loadList.loadLanternFish("December07.txt");
+        December07 december07 = new December07();
+        System.out.println(december07.calculateHeight(list));
     }
 
     public static void runDecember06() throws IOException {
