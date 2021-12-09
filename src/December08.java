@@ -8,17 +8,17 @@ public class December08 {
         int counter = 0;
         for (int outer = 0; outer < output.size(); outer++) {
             HashMap<Integer, String> map = mappings.get(outer);
-            String out = "";
+            StringBuilder out = new StringBuilder();
             for (String number : output.get(outer)) {
 
                 for (int inner = 0; inner < 10; inner++) {
                     if ((this.getMatchingChars(number, map.get(inner)) == number.length()) && (this.getMatchingChars(number, map.get(inner)) == map.get(inner).length())) {
-                        out = out + inner;
+                        out.append(inner);
                     }
                 }
 
             }
-            counter = counter + Integer.valueOf(out);
+            counter = counter + Integer.parseInt(out.toString());
         }
         return counter;
     }
@@ -26,10 +26,9 @@ public class December08 {
 
     public List<HashMap> mapping(List<List<String>> numbers) {
         List<HashMap> maps = new ArrayList<>();
-        for (int i = 0; i < numbers.size(); i++) {
+        for (List<String> strings : numbers) {
             HashMap<Integer, String> pattern = new HashMap<>();
-            List<String> list = numbers.get(i);
-            for (String number : list) {
+            for (String number : strings) {
                 switch (number.length()) {
                     case 2:
                         pattern.put(1, number);
@@ -45,47 +44,39 @@ public class December08 {
                         break;
                 }
             }
-            for (String number : list) {
-                switch (number.length()) {
-                    case 5:
-                        if (this.getMatchingChars(number, pattern.get(1)) == 2) {
-                            pattern.put(3, number);
-                        }
-                        break;
-
+            for (String number : strings) {
+                if (number.length() == 5) {
+                    if (this.getMatchingChars(number, pattern.get(1)) == 2) {
+                        pattern.put(3, number);
+                    }
                 }
             }
-            for (String number : list) {
-                switch (number.length()) {
-                    case 6:
-                        if (this.getMatchingChars(number, pattern.get(3)) == 5) {
-                            pattern.put(9, number);
-                        }
-                        break;
+            for (String number : strings) {
+                if (number.length() == 6) {
+                    if (this.getMatchingChars(number, pattern.get(3)) == 5) {
+                        pattern.put(9, number);
+                    }
                 }
             }
 
-            for (String number : list) {
-                switch (number.length()) {
-                    case 5:
-                        int matching = this.getMatchingChars(number, pattern.get(4));
-                        if (matching == 2) {
-                            pattern.put(2, number);
-                        } else if (matching == 3 && !number.equals(pattern.get(3))) {
-                            pattern.put(5, number);
-                        }
-                        break;
+            for (String number : strings) {
+                if (number.length() == 5) {
+                    int matching = this.getMatchingChars(number, pattern.get(4));
+                    if (matching == 2) {
+                        pattern.put(2, number);
+                    } else if (matching == 3 && !number.equals(pattern.get(3))) {
+                        pattern.put(5, number);
+                    }
                 }
             }
-            for (String number : list) {
-                switch (number.length()) {
-                    case 6:
-                        if (this.getMatchingChars(number, pattern.get(5)) == 5 && !number.equals(pattern.get(9))) {
-                            pattern.put(6, number);
-                        }
+            for (String number : strings) {
+                if (number.length() == 6) {
+                    if (this.getMatchingChars(number, pattern.get(5)) == 5 && !number.equals(pattern.get(9))) {
+                        pattern.put(6, number);
+                    }
                 }
             }
-            for (String number : list) {
+            for (String number : strings) {
                 if (number.length() == 6) {
                     if (!(this.getMatchingChars(number, pattern.get(6)) == 6) && !(this.getMatchingChars(number, pattern.get(9)) == 6)) {
                         pattern.put(0, number);
