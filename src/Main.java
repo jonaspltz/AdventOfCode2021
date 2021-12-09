@@ -1,11 +1,38 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        runDecember07();
+        runDecember09();
+    }
+
+    public static void runDecember09() throws IOException {
+        LoadList loadList = new LoadList();
+        int[][] coordinates = loadList.loadTo2dArray("December09.txt");
+        December09 december09 = new December09();
+        for(int[] row : coordinates){
+            for(int number : row){
+                System.out.print(number);
+            }
+            System.out.println();
+        }
+        List<int[]> deepPoints = december09.getDeepPoints(coordinates);
+        System.out.println(december09.calculateRisk(deepPoints, coordinates));
+        System.out.println(december09.calculateBasinSize(deepPoints, coordinates));
+    }
+
+    public static void runDecember08() throws IOException {
+        LoadList loadList = new LoadList();
+        December08 december08 = new December08();
+        List<List<String>> output = loadList.loadOutputValue("December08.txt");
+        int numbers = december08.countNumbers(output);
+        System.out.println(numbers);
+        List<HashMap> maps = december08.mapping(loadList.loadInputValue("December08.txt"));
+        System.out.println(december08.count(output, maps));
+
     }
 
     public static void runDecember07() throws IOException {

@@ -6,6 +6,66 @@ import java.util.Scanner;
 
 public class LoadList {
 
+    public int[][] loadTo2dArray(String file) throws IOException {
+        List<String> rows = this.loadList(file);
+        int[][] coordinates = new int[rows.size()][rows.get(0).length()];
+        for (int outer = 0; outer < rows.size(); outer++) {
+            for (int inner = 0; inner < rows.get(outer).length(); inner++) {
+                coordinates[outer][inner] = Integer.parseInt(String.valueOf(rows.get(outer).charAt(inner)));
+            }
+        }
+
+        return coordinates;
+    }
+
+
+    public List<List<String>> loadInputValue(String file) throws IOException {
+        List<List<String>> inputValue = new ArrayList<>();
+        Scanner sc1 = new Scanner(new File(file));
+        sc1.useDelimiter("\r\n");
+        List<String> rows = new ArrayList<>();
+        while (sc1.hasNext()) {
+            rows.add(sc1.next());
+        }
+        sc1.close();
+        for (String row : rows) {
+            Scanner sc2 = new Scanner(row.substring(0, 59));
+            sc2.useDelimiter(" ");
+            List<String> rowOutput = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                rowOutput.add(sc2.next());
+            }
+            inputValue.add(rowOutput);
+            sc2.close();
+        }
+
+        return inputValue;
+    }
+
+    public List<List<String>> loadOutputValue(String file) throws IOException {
+        List<List<String>> outputValue = new ArrayList<>();
+        Scanner sc1 = new Scanner(new File(file));
+        sc1.useDelimiter("\r\n");
+        List<String> rows = new ArrayList<>();
+        while (sc1.hasNext()) {
+            rows.add(sc1.next());
+        }
+        sc1.close();
+        for (String row : rows) {
+            Scanner sc2 = new Scanner(row.substring(61));
+            sc2.useDelimiter(" ");
+            List<String> rowOutput = new ArrayList<>();
+            for (int i = 0; i < 4; i++) {
+                rowOutput.add(sc2.next());
+            }
+            outputValue.add(rowOutput);
+            sc2.close();
+        }
+
+
+        return outputValue;
+    }
+
     public List<Integer> loadLanternFish(String file) throws IOException {
         List<Integer> list = new ArrayList<>();
         Scanner sc = new Scanner(new File(file));
@@ -13,6 +73,7 @@ public class LoadList {
         while (sc.hasNext()) {
             list.add(Integer.parseInt(sc.next()));
         }
+        sc.close();
         return list;
     }
 
@@ -36,9 +97,12 @@ public class LoadList {
                     int next = sc2.nextInt();
                     board[rows][columns] = next;
                 }
+                sc2.close();
             }
             list.add(board);
         }
+
+        sc1.close();
         return list;
     }
 
@@ -52,6 +116,7 @@ public class LoadList {
                 counter++;
             }
         }
+        sc.close();
         return counter;
     }
 
